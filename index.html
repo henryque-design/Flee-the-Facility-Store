@@ -1,377 +1,692 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Flee the Facility Store 🌸</title>
-  <style>
-    :root {
-      --primary-color: #ffb6c1;
-      --secondary-color: #ff69b4;
-      --accent-color: #ff1493;
-      --bg-color: #fff0f5;
-      --text-color: #4a4a4a;
-      --card-bg: #ffffff;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Literature Club | Loja FTF</title>
+    <!-- Ícones Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
 
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: var(--bg-color);
-      color: var(--text-color);
-      margin: 0;
-      padding: 0;
-    }
+        body {
+            background: linear-gradient(180deg, #fff2f6 0%, #fde8f0 100%);
+            color: #333333;
+            min-height: 100vh;
+            padding-bottom: 40px;
+        }
 
-    header {
-      background-color: var(--primary-color);
-      padding: 20px;
-      text-align: center;
-      border-bottom: 4px solid var(--secondary-color);
-      position: relative;
-    }
+        /* CABEÇALHO */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 1.5rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
 
-    .header-banner {
-      max-width: 100%;
-      height: auto;
-      border-radius: 10px;
-      margin-bottom: 10px;
-    }
+        .avatar-area {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 2px solid #ffffff;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+        }
 
-    .header-title {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 15px;
-    }
+        .avatar-area img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
 
-    .avatar {
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      border: 3px solid white;
-    }
+        .cart-pill-btn {
+            background-color: #ffffff;
+            border: 1px solid #f0d5e1;
+            padding: 8px 18px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(234, 116, 162, 0.08);
+            color: #8a6b79;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
 
-    h1 {
-      color: white;
-      margin: 0;
-      text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
-    }
+        .cart-pill-count {
+            color: #ea74a2;
+            font-weight: bold;
+        }
 
-    .container {
-      max-width: 1000px;
-      margin: 20px auto;
-      padding: 0 15px;
-    }
+        /* CONTAINER PRINCIPAL */
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
 
-    .products-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-      gap: 20px;
-    }
+        /* HERO / TÍTULO PRINCIPAL */
+        .hero-section {
+            margin: 1rem 0 1.5rem 0;
+        }
 
-    .product-card {
-      background-color: var(--card-bg);
-      border: 2px solid var(--primary-color);
-      border-radius: 12px;
-      padding: 15px;
-      text-align: center;
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
+        .main-title {
+            font-size: 2.4rem;
+            font-weight: 900;
+            line-height: 1.05;
+            letter-spacing: -1px;
+            color: #222222;
+        }
 
-    .product-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 5px 15px rgba(255, 105, 180, 0.3);
-    }
+        .main-title-pink {
+            color: #ea74a2;
+        }
 
-    .product-title {
-      font-weight: bold;
-      margin: 10px 0;
-      color: var(--accent-color);
-    }
+        .hero-subtitle {
+            margin-top: 12px;
+            color: #9a828e;
+            font-size: 0.95rem;
+        }
 
-    .product-price {
-      font-size: 1.2em;
-      color: #2e8b57;
-      font-weight: bold;
-      margin-bottom: 10px;
-    }
+        .btn-ver-estoque {
+            display: inline-block;
+            background-color: #ea74a2;
+            color: #ffffff;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            text-decoration: none;
+            margin-top: 1.2rem;
+            box-shadow: 0 4px 12px rgba(234, 116, 162, 0.3);
+            cursor: pointer;
+        }
 
-    .btn-add {
-      background-color: var(--secondary-color);
-      color: white;
-      border: none;
-      padding: 10px 15px;
-      border-radius: 20px;
-      cursor: pointer;
-      font-weight: bold;
-      transition: background-color 0.2s;
-      width: 100%;
-    }
+        /* BANNER DOKI DOKI */
+        .banner-container {
+            width: 100%;
+            height: 160px;
+            border-radius: 24px;
+            overflow: hidden;
+            margin: 2rem 0;
+            border: 4px solid #ffffff;
+            box-shadow: 0 8px 20px rgba(234, 116, 162, 0.12);
+        }
 
-    .btn-add:hover {
-      background-color: var(--accent-color);
-    }
+        .banner-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
 
-    .cart-float {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background-color: var(--secondary-color);
-      color: white;
-      border: none;
-      padding: 15px 25px;
-      border-radius: 30px;
-      font-size: 1.1em;
-      font-weight: bold;
-      cursor: pointer;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      z-index: 99;
-    }
+        /* BARRA INFORMATIVA */
+        .info-bar {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            padding: 1rem 0;
+            border-top: 1px solid #f2dbe4;
+            border-bottom: 1px solid #f2dbe4;
+            margin-bottom: 2rem;
+        }
 
-    /* Modal Styling */
-    .modal {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0,0,0,0.5);
-      z-index: 100;
-      justify-content: center;
-      align-items: center;
-    }
+        .info-item {
+            font-size: 0.72rem;
+            font-weight: 700;
+            color: #bda3b0;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
 
-    .modal-content {
-      background-color: white;
-      padding: 25px;
-      border-radius: 15px;
-      max-width: 450px;
-      width: 90%;
-      border: 3px solid var(--primary-color);
-      position: relative;
-    }
+        /* SUBTÍTULO DA LOJA */
+        .section-tag {
+            color: #ea74a2;
+            font-size: 0.8rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            margin-bottom: 6px;
+        }
 
-    .close-button {
-      position: absolute;
-      top: 10px;
-      right: 15px;
-      font-size: 1.5em;
-      cursor: pointer;
-      color: #aaa;
-    }
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: #222222;
+            line-height: 1.15;
+            margin-bottom: 1.5rem;
+        }
 
-    .close-button:hover {
-      color: #000;
-    }
+        /* GRID DE PRODUTOS */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
 
-    .cart-item {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 10px;
-      border-bottom: 1px dashed #eee;
-      padding-bottom: 5px;
-    }
+        .card {
+            background-color: #ffffff;
+            border-radius: 20px;
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+            border: 1px solid #f7e6ed;
+        }
 
-    .pix-box {
-      background: #fff0f5;
-      padding: 15px;
-      border-radius: 10px;
-      margin: 15px 0;
-      border: 1px solid var(--primary-color);
-      text-align: center;
-    }
+        .card-img-container {
+            width: 100%;
+            height: 90px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 0.6rem;
+        }
 
-    .pix-input-group {
-      display: flex;
-      gap: 5px;
-      justify-content: center;
-      align-items: center;
-      margin-top: 8px;
-    }
+        .card img {
+            max-width: 100%;
+            max-height: 85px;
+            object-fit: contain;
+        }
 
-    .pix-input {
-      width: 80%;
-      padding: 8px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      font-size: 0.85em;
-      text-align: center;
-    }
+        .card-title {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: #333333;
+            margin-bottom: 0.4rem;
+            min-height: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
 
-    .btn-copy {
-      padding: 8px 12px;
-      background: var(--secondary-color);
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      font-weight: bold;
-    }
+        .card-price {
+            font-size: 0.85rem;
+            color: #ea74a2;
+            margin-bottom: 0.8rem;
+            font-weight: 800;
+        }
 
-    .btn-checkout {
-      width: 100%;
-      padding: 12px;
-      background-color: #7289da;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      font-weight: bold;
-      font-size: 1em;
-      cursor: pointer;
-    }
+        .btn-add {
+            width: 100%;
+            background-color: #ea74a2;
+            color: #ffffff;
+            border: none;
+            padding: 8px 0;
+            border-radius: 10px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: transform 0.1s;
+        }
 
-    .btn-checkout:hover {
-      background-color: #5b6eae;
-    }
-  </style>
+        .btn-add:active {
+            transform: scale(0.96);
+        }
+
+        /* MODAL DO CARRINHO */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(4px);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            padding: 1rem;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .cart-modal {
+            background-color: #ffffff;
+            border-radius: 24px;
+            width: 100%;
+            max-width: 440px;
+            max-height: 90vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(234, 116, 162, 0.2);
+        }
+
+        .cart-header {
+            padding: 1.2rem;
+            border-bottom: 1px solid #fceef3;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .cart-header h2 {
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: #333;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            color: #aaa;
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+
+        .cart-items {
+            padding: 1rem;
+            overflow-y: auto;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .cart-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #fff9fb;
+            padding: 10px 14px;
+            border-radius: 14px;
+            border: 1px solid #fceef3;
+        }
+
+        .cart-item-name {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: #333;
+        }
+
+        .cart-item-price {
+            font-size: 0.8rem;
+            color: #ea74a2;
+            font-weight: 700;
+        }
+
+        .cart-item-controls {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .qty-btn {
+            background-color: #fceef3;
+            border: none;
+            color: #ea74a2;
+            width: 24px;
+            height: 24px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        /* SECÇÃO PIX NO CARRINHO */
+        .pix-container {
+            background-color: #fff0f5;
+            border: 1px solid #fcdbe7;
+            border-radius: 16px;
+            padding: 12px;
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        .pix-title {
+            font-size: 0.85rem;
+            font-weight: 800;
+            color: #ea74a2;
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .pix-subtitle {
+            font-size: 0.75rem;
+            color: #9a828e;
+            margin-bottom: 8px;
+        }
+
+        .pix-input-wrapper {
+            display: flex;
+            gap: 6px;
+        }
+
+        .pix-input {
+            flex: 1;
+            padding: 8px 10px;
+            border: 1px solid #f2c2d4;
+            border-radius: 8px;
+            font-size: 0.75rem;
+            background-color: #ffffff;
+            color: #555;
+            text-align: center;
+            outline: none;
+        }
+
+        .btn-copy-pix {
+            background-color: #ea74a2;
+            color: #ffffff;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .btn-copy-pix:hover {
+            background-color: #d65d8c;
+        }
+
+        .copy-success {
+            font-size: 0.7rem;
+            color: #2e8b57;
+            font-weight: 700;
+            margin-top: 4px;
+            display: none;
+        }
+
+        .cart-footer {
+            padding: 1.2rem;
+            border-top: 1px solid #fceef3;
+            background-color: #fff9fb;
+        }
+
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .btn-checkout {
+            width: 100%;
+            background-color: #7289da;
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 12px;
+            font-weight: 800;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .btn-checkout:hover {
+            background-color: #5b6eae;
+        }
+
+        .empty-cart-msg {
+            text-align: center;
+            color: #9a828e;
+            padding: 2rem 0;
+            font-size: 0.9rem;
+        }
+    </style>
 </head>
 <body>
 
-  <header>
-    <div class="header-title">
-      <h1>Flee the Facility Store 🌸</h1>
-    </div>
-  </header>
-
-  <div class="container">
-    <h2>Produtos Disponíveis</h2>
-    <div class="products-grid">
-      <!-- Exemplo de Produtos -->
-      <div class="product-card">
-        <div class="product-title">VIP Ticket / Marreta</div>
-        <div class="product-price">R$ 5,00</div>
-        <button class="btn-add" onclick="addToCart('VIP Ticket / Marreta', 5.00)">Adicionar ao Carrinho</button>
-      </div>
-
-      <div class="product-card">
-        <div class="product-title">Conjunto Raro</div>
-        <div class="product-price">R$ 10,00</div>
-        <button class="btn-add" onclick="addToCart('Conjunto Raro', 10.00)">Adicionar ao Carrinho</button>
-      </div>
-
-      <div class="product-card">
-        <div class="product-title">Item Épico</div>
-        <div class="product-price">R$ 15,00</div>
-        <button class="btn-add" onclick="addToCart('Item Épico', 15.00)">Adicionar ao Carrinho</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Botão Flutuante do Carrinho -->
-  <button class="cart-float" onclick="toggleCart()">
-    🛒 Carrinho (<span id="cart-count">0</span>)
-  </button>
-
-  <!-- Modal do Carrinho -->
-  <div id="cart-modal" class="modal">
-    <div class="modal-content">
-      <span class="close-button" onclick="toggleCart()">&times;</span>
-      <h2 style="color: var(--accent-color); margin-top: 0;">Teu Carrinho 🛒</h2>
-      
-      <div id="cart-items">
-        <p style="color: #888;">O teu carrinho está vazio.</p>
-      </div>
-
-      <div style="margin: 15px 0; font-size: 1.1em; text-align: right;">
-        <strong>Total:</strong> <span id="cart-total-price">R$ 0,00</span>
-      </div>
-
-      <!-- Caixa do Pagamento PIX -->
-      <div class="pix-box">
-        <h3 style="margin: 0; color: var(--accent-color);">Pagamento via PIX 💸</h3>
-        <p style="font-size: 0.85em; margin: 5px 0; color: #666;">Copia a chave abaixo para fazer o pagamento:</p>
-        
-        <div class="pix-input-group">
-          <input type="text" id="pix-key" value="0b74d70f-a956-46fe-a3c1-c83a8fc5033e" readonly class="pix-input">
-          <button class="btn-copy" onclick="copyPixKey()">Copiar</button>
+    <!-- CABEÇALHO -->
+    <header>
+        <div class="avatar-area">
+            <img src="https://cdn.discordapp.com/attachments/1533828139829170337/1550951272235147304/bb99e027c4b3930924391d0163ec996a.jpg?ex=6ab0336e&is=6aaee1ee&hm=253351b72c5b52f2f2c99831ec9f78a9698ee0021f94aaff634eed7b84ffbf25&" alt="Literature Club Avatar">
         </div>
-        <small id="copy-status" style="color: green; display: none; margin-top: 5px;">Chave PIX copiada!</small>
-      </div>
+        <button class="cart-pill-btn" onclick="toggleCart()">
+            carrinho <span class="cart-pill-count" id="cartCount">0</span>
+        </button>
+    </header>
 
-      <button class="btn-checkout" onclick="checkoutDiscord()">
-        Enviar Comprovativo no Discord
-      </button>
+    <div class="container">
+
+        <!-- TÍTULO DA LOJA -->
+        <div class="hero-section">
+            <h1 class="main-title">
+                estoque<br>
+                <span class="main-title-pink">flee the facility.</span>
+            </h1>
+            <p class="hero-subtitle">itens disponíveis no estoque atual.</p>
+            <a href="#catalogo" class="btn-ver-estoque">ver estoque</a>
+        </div>
+
+        <!-- BANNER DOKI DOKI -->
+        <div class="banner-container">
+            <img src="https://cdn.discordapp.com/attachments/1533828139829170337/1550951273493176371/d606480817d64236580719b353538a21.jpg?ex=6ab0336e&is=6aaee1ee&hm=5c26b62125e0a643871bfbb382b1cbce9109ac1c59257bc4e1af44f53cdf3558&" alt="Literature Club Banner">
+        </div>
+
+        <!-- BARRA INFORMATIVA -->
+        <div class="info-bar">
+            <div class="info-item">LITERATURE CLUB</div>
+            <div class="info-item">FLEE THE FACILITY</div>
+            <div class="info-item">COMPRA SEGURA</div>
+            <div class="info-item">SUPORTE DISCORD</div>
+        </div>
+
+        <!-- SEÇÃO DE CATÁLOGO -->
+        <div id="catalogo">
+            <div class="section-tag">LITERATURE CLUB</div>
+            <h2 class="section-title">loja de ftf com preços super baratos</h2>
+
+            <!-- GRID DE PRODUTOS -->
+            <div class="products-grid">
+
+                <div class="card">
+                    <div class="card-img-container">
+                        <img src="https://via.placeholder.com/150/ffffff/ea74a2?text=Strawberry+Moo" alt="Strawberry Moo">
+                    </div>
+                    <h3 class="card-title">Strawberry Moo Plushie</h3>
+                    <div class="card-price">R$ 200,00</div>
+                    <button class="btn-add" onclick="addToCart('Strawberry Moo Plushie', 200.00)">
+                        <i class="fa-solid fa-plus"></i> Adicionar
+                    </button>
+                </div>
+
+                <div class="card">
+                    <div class="card-img-container">
+                        <img src="https://via.placeholder.com/150/ffffff/ea74a2?text=Frosted" alt="Frosted">
+                    </div>
+                    <h3 class="card-title">Frosted Set</h3>
+                    <div class="card-price">R$ 19,99</div>
+                    <button class="btn-add" onclick="addToCart('Frosted Set', 19.99)">
+                        <i class="fa-solid fa-plus"></i> Adicionar
+                    </button>
+                </div>
+
+                <div class="card">
+                    <div class="card-img-container">
+                        <img src="https://via.placeholder.com/150/ffffff/ea74a2?text=Popcorn+Stand" alt="Popcorn Stand">
+                    </div>
+                    <h3 class="card-title">Popcorn Stand</h3>
+                    <div class="card-price">R$ 8,00</div>
+                    <button class="btn-add" onclick="addToCart('Popcorn Stand', 8.00)">
+                        <i class="fa-solid fa-plus"></i> Adicionar
+                    </button>
+                </div>
+
+                <div class="card">
+                    <div class="card-img-container">
+                        <img src="https://via.placeholder.com/150/ffffff/ea74a2?text=Lovesick+Bow" alt="Lovesick Bow">
+                    </div>
+                    <h3 class="card-title">Lovesick Bow</h3>
+                    <div class="card-price">R$ 7,50</div>
+                    <button class="btn-add" onclick="addToCart('Lovesick Bow', 7.50)">
+                        <i class="fa-solid fa-plus"></i> Adicionar
+                    </button>
+                </div>
+
+            </div>
+        </div>
+
     </div>
-  </div>
 
-  <script>
-    let cart = [];
+    <!-- MODAL DO CARRINHO -->
+    <div class="modal-overlay" id="cartModal">
+        <div class="cart-modal">
+            <div class="cart-header">
+                <h2>Seu Carrinho</h2>
+                <button class="close-btn" onclick="toggleCart()"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            
+            <div class="cart-items" id="cartItemsContainer"></div>
 
-    function addToCart(name, price) {
-      cart.push({ name, price });
-      updateCartUI();
-    }
+            <div class="cart-footer">
+                <!-- CAIXA DO PIX -->
+                <div class="pix-container" id="pixContainer" style="display: none;">
+                    <div class="pix-title">
+                        <i class="fa-solid fa-pix"></i> Pagamento via PIX
+                    </div>
+                    <div class="pix-subtitle">Realize o pagamento usando a chave abaixo:</div>
+                    <div class="pix-input-wrapper">
+                        <input type="text" id="pixKeyInput" value="0b74d70f-a956-46fe-a3c1-c83a8fc5033e" readonly class="pix-input">
+                        <button class="btn-copy-pix" onclick="copyPixKey()">
+                            <i class="fa-regular fa-copy"></i> Copiar
+                        </button>
+                    </div>
+                    <div class="copy-success" id="copySuccessMsg">Chave PIX copiada!</div>
+                </div>
 
-    function updateCartUI() {
-      document.getElementById('cart-count').innerText = cart.length;
-      
-      const cartItemsContainer = document.getElementById('cart-items');
-      const cartTotalContainer = document.getElementById('cart-total-price');
-      
-      if (cart.length === 0) {
-        cartItemsContainer.innerHTML = '<p style="color: #888;">O teu carrinho está vazio.</p>';
-        cartTotalContainer.innerText = 'R$ 0,00';
-        return;
-      }
+                <div class="cart-total" style="margin-top: 1rem;">
+                    <span>Total:</span>
+                    <span id="cartTotalValue">R$ 0,00</span>
+                </div>
 
-      cartItemsContainer.innerHTML = '';
-      let total = 0;
+                <button class="btn-checkout" onclick="checkoutDiscord()">
+                    <i class="fa-brands fa-discord"></i> Enviar Comprovante no Discord
+                </button>
+            </div>
+        </div>
+    </div>
 
-      cart.forEach((item, index) => {
-        total += item.price;
-        const itemElement = document.createElement('div');
-        itemElement.className = 'cart-item';
-        itemElement.innerHTML = `
-          <span>${item.name}</span>
-          <span>R$ ${item.price.toFixed(2)}</span>
-        `;
-        cartItemsContainer.appendChild(itemElement);
-      });
+    <!-- SCRIPT DE FUNCIONAMENTO -->
+    <script>
+        let cart = [];
 
-      cartTotalContainer.innerText = `R$ ${total.toFixed(2)}`;
-    }
+        function addToCart(name, price) {
+            const existingItem = cart.find(item => item.name === name);
+            if (existingItem) {
+                existingItem.qty += 1;
+            } else {
+                cart.push({ name, price, qty: 1 });
+            }
+            updateCartUI();
+        }
 
-    function toggleCart() {
-      const modal = document.getElementById('cart-modal');
-      modal.style.display = modal.style.display === 'flex' ? 'none' : 'flex';
-    }
+        function changeQty(name, delta) {
+            const item = cart.find(item => item.name === name);
+            if (item) {
+                item.qty += delta;
+                if (item.qty <= 0) {
+                    cart = cart.filter(i => i.name !== name);
+                }
+            }
+            updateCartUI();
+        }
 
-    function copyPixKey() {
-      const pixInput = document.getElementById('pix-key');
-      pixInput.select();
-      pixInput.setSelectionRange(0, 99999);
-      navigator.clipboard.writeText(pixInput.value);
-      
-      const status = document.getElementById('copy-status');
-      status.style.display = 'block';
-      setTimeout(() => { status.style.display = 'none'; }, 3000);
-    }
+        function toggleCart() {
+            document.getElementById('cartModal').classList.toggle('active');
+        }
 
-    function checkoutDiscord() {
-      if (cart.length === 0) {
-        alert('Adiciona pelo menos um produto ao carrinho!');
-        return;
-      }
+        function copyPixKey() {
+            const pixInput = document.getElementById('pixKeyInput');
+            pixInput.select();
+            pixInput.setSelectionRange(0, 99999);
+            navigator.clipboard.writeText(pixInput.value).then(() => {
+                const msg = document.getElementById('copySuccessMsg');
+                msg.style.display = 'block';
+                setTimeout(() => { msg.style.display = 'none'; }, 3000);
+            });
+        }
 
-      let total = cart.reduce((sum, item) => sum + item.price, 0);
-      let orderText = "🌸 **NOVO PEDIDO - FLEE THE FACILITY STORE** 🌸\n\n";
-      orderText += "**Itens do Pedido:**\n";
-      cart.forEach(item => {
-        orderText += `- ${item.name}: R$ ${item.price.toFixed(2)}\n`;
-      });
-      orderText += `\n**Total:** R$ ${total.toFixed(2)}\n`;
-      orderText += "**Pagamento:** PIX Realizado ✅\n\n";
-      orderText += "Aguardando confirmação do comprovativo!";
+        function updateCartUI() {
+            const cartItemsContainer = document.getElementById('cartItemsContainer');
+            const cartCount = document.getElementById('cartCount');
+            const cartTotalValue = document.getElementById('cartTotalValue');
+            const pixContainer = document.getElementById('pixContainer');
 
-      navigator.clipboard.writeText(orderText).then(() => {
-        alert('Pedido copiado com sucesso! Agora cola a mensagem no teu Ticket no Discord.');
-      });
-    }
-  </script>
+            let totalQty = 0;
+            let totalPrice = 0;
+
+            cartItemsContainer.innerHTML = '';
+
+            if (cart.length === 0) {
+                cartItemsContainer.innerHTML = '<div class="empty-cart-msg">Seu carrinho está vazio.</div>';
+                pixContainer.style.display = 'none';
+            } else {
+                pixContainer.style.display = 'block';
+                cart.forEach(item => {
+                    totalQty += item.qty;
+                    totalPrice += item.price * item.qty;
+
+                    const itemElement = document.createElement('div');
+                    itemElement.className = 'cart-item';
+                    itemElement.innerHTML = `
+                        <div>
+                            <div class="cart-item-name">${item.name}</div>
+                            <div class="cart-item-price">R$ ${(item.price * item.qty).toFixed(2).replace('.', ',')}</div>
+                        </div>
+                        <div class="cart-item-controls">
+                            <button class="qty-btn" onclick="changeQty('${item.name}', -1)">-</button>
+                            <span>${item.qty}</span>
+                            <button class="qty-btn" onclick="changeQty('${item.name}', 1)">+</button>
+                        </div>
+                    `;
+                    cartItemsContainer.appendChild(itemElement);
+                });
+            }
+
+            cartCount.textContent = totalQty;
+            cartTotalValue.textContent = `R$ ${totalPrice.toFixed(2).replace('.', ',')}`;
+        }
+
+        function checkoutDiscord() {
+            if (cart.length === 0) {
+                alert("Adicione pelo menos um item ao carrinho!");
+                return;
+            }
+
+            let message = "🌸 *NOVO PEDIDO - LITERATURE CLUB* 🌸\n\n";
+            let totalPrice = 0;
+
+            cart.forEach(item => {
+                const subtotal = item.price * item.qty;
+                totalPrice += subtotal;
+                message += `• ${item.qty}x ${item.name} (R$ ${subtotal.toFixed(2).replace('.', ',')})\n`;
+            });
+
+            message += `\n💰 *Total:* R$ ${totalPrice.toFixed(2).replace('.', ',')}`;
+            message += "\n💳 *Pagamento:* PIX Realizado ✅";
+            message += "\n\nOlá! Vim do site e já realizei o pagamento via PIX. Gostaria de enviar meu comprovante e receber meus itens.";
+
+            navigator.clipboard.writeText(message).then(() => {
+                alert("Pedido copiado com sucesso! Abra o ticket no Discord e cole a mensagem.");
+                window.open("https://discord.gg/xjzaQD9hhS", "_blank");
+            }).catch(() => {
+                window.open("https://discord.gg/xjzaQD9hhS", "_blank");
+            });
+        }
+    </script>
 </body>
 </html>
 
