@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Literature Club | Loja de Itens</title>
+    <title>Literature Club | Loja FTF</title>
     <!-- Ícones Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -15,9 +15,10 @@
         }
 
         body {
-            background-color: #0b0c10;
-            color: #ffffff;
-            padding-bottom: 30px;
+            background: linear-gradient(180deg, #fff2f6 0%, #fde8f0 100%);
+            color: #333333;
+            min-height: 100vh;
+            padding-bottom: 40px;
         }
 
         /* CABEÇALHO */
@@ -25,87 +26,560 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1rem 1.2rem;
-            background-color: #12141d;
-            border-bottom: 1px solid #1f2230;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        .logo-area {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .snowflake-icon {
-            background-color: #38b6ff;
-            color: #ffffff;
-            width: 38px;
-            height: 38px;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            box-shadow: 0 0 10px rgba(56, 182, 255, 0.4);
-        }
-
-        .site-title {
-            font-size: 1.15rem;
-            font-weight: 700;
-            color: #ffffff;
-        }
-
-        .header-actions {
-            display: flex;
-            gap: 10px;
-        }
-
-        .icon-btn {
-            background-color: #1e2230;
-            border: 1px solid #2a2f42;
-            color: #38b6ff;
-            width: 38px;
-            height: 38px;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1rem;
-            text-decoration: none;
-            cursor: pointer;
-            position: relative;
-        }
-
-        .cart-count {
-            position: absolute;
-            top: -5px;
-            right: -5px;
-            background-color: #ff3366;
-            color: white;
-            border-radius: 50%;
-            width: 18px;
-            height: 18px;
-            font-size: 0.7rem;
-            font-weight: bold;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .container {
-            max-width: 800px;
+            padding: 1.2rem 1.5rem;
+            max-width: 600px;
             margin: 0 auto;
-            padding: 1.2rem 0.8rem;
         }
 
-        /* SECÇÃO DE PESQUISA */
-        .search-section {
+        .avatar-area {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 2px solid #ffffff;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+        }
+
+        .avatar-area img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .cart-pill-btn {
+            background-color: #ffffff;
+            border: 1px solid #f0d5e1;
+            padding: 8px 18px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(234, 116, 162, 0.08);
+            color: #8a6b79;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .cart-pill-count {
+            color: #ea74a2;
+            font-weight: bold;
+        }
+
+        /* CONTAINER PRINCIPAL */
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        /* HERO / TÍTULO PRINCIPAL */
+        .hero-section {
+            margin: 1rem 0 1.5rem 0;
+        }
+
+        .main-title {
+            font-size: 2.4rem;
+            font-weight: 900;
+            line-height: 1.05;
+            letter-spacing: -1px;
+            color: #222222;
+        }
+
+        .main-title-pink {
+            color: #ea74a2;
+        }
+
+        .hero-subtitle {
+            margin-top: 12px;
+            color: #9a828e;
+            font-size: 0.95rem;
+        }
+
+        .btn-ver-estoque {
+            display: inline-block;
+            background-color: #ea74a2;
+            color: #ffffff;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            text-decoration: none;
+            margin-top: 1.2rem;
+            box-shadow: 0 4px 12px rgba(234, 116, 162, 0.3);
+            cursor: pointer;
+        }
+
+        /* BANNER DOKI DOKI */
+        .banner-container {
+            width: 100%;
+            height: 160px;
+            border-radius: 24px;
+            overflow: hidden;
+            margin: 2rem 0;
+            border: 4px solid #ffffff;
+            box-shadow: 0 8px 20px rgba(234, 116, 162, 0.12);
+        }
+
+        .banner-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* BARRA INFORMATIVA */
+        .info-bar {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            padding: 1rem 0;
+            border-top: 1px solid #f2dbe4;
+            border-bottom: 1px solid #f2dbe4;
+            margin-bottom: 2rem;
+        }
+
+        .info-item {
+            font-size: 0.72rem;
+            font-weight: 700;
+            color: #bda3b0;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* SUBTÍTULO DA LOJA */
+        .section-tag {
+            color: #ea74a2;
+            font-size: 0.8rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            margin-bottom: 6px;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: #222222;
+            line-height: 1.15;
             margin-bottom: 1.5rem;
         }
 
+        /* GRID DE PRODUTOS */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+        .card {
+            background-color: #ffffff;
+            border-radius: 20px;
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+            border: 1px solid #f7e6ed;
+        }
+
+        .card-img-container {
+            width: 100%;
+            height: 90px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 0.6rem;
+        }
+
+        .card img {
+            max-width: 100%;
+            max-height: 85px;
+            object-fit: contain;
+        }
+
+        .card-title {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: #333333;
+            margin-bottom: 0.4rem;
+            min-height: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .card-price {
+            font-size: 0.85rem;
+            color: #ea74a2;
+            margin-bottom: 0.8rem;
+            font-weight: 800;
+        }
+
+        .btn-add {
+            width: 100%;
+            background-color: #ea74a2;
+            color: #ffffff;
+            border: none;
+            padding: 8px 0;
+            border-radius: 10px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: transform 0.1s;
+        }
+
+        .btn-add:active {
+            transform: scale(0.96);
+        }
+
+        /* MODAL DO CARRINHO */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(4px);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            padding: 1rem;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .cart-modal {
+            background-color: #ffffff;
+            border-radius: 24px;
+            width: 100%;
+            max-width: 440px;
+            max-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(234, 116, 162, 0.2);
+        }
+
+        .cart-header {
+            padding: 1.2rem;
+            border-bottom: 1px solid #fceef3;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .cart-header h2 {
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: #333;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            color: #aaa;
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+
+        .cart-items {
+            padding: 1rem;
+            overflow-y: auto;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .cart-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #fff9fb;
+            padding: 10px 14px;
+            border-radius: 14px;
+            border: 1px solid #fceef3;
+        }
+
+        .cart-item-name {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: #333;
+        }
+
+        .cart-item-price {
+            font-size: 0.8rem;
+            color: #ea74a2;
+            font-weight: 700;
+        }
+
+        .cart-item-controls {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .qty-btn {
+            background-color: #fceef3;
+            border: none;
+            color: #ea74a2;
+            width: 24px;
+            height: 24px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .cart-footer {
+            padding: 1.2rem;
+            border-top: 1px solid #fceef3;
+            background-color: #fff9fb;
+        }
+
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .btn-checkout {
+            width: 100%;
+            background-color: #ea74a2;
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 12px;
+            font-weight: 800;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            cursor: pointer;
+        }
+
+        .empty-cart-msg {
+            text-align: center;
+            color: #9a828e;
+            padding: 2rem 0;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- CABEÇALHO -->
+    <header>
+        <div class="avatar-area">
+            <img src="https://via.placeholder.com/100/ea74a2/ffffff?text=LC" alt="Literature Club">
+        </div>
+        <button class="cart-pill-btn" onclick="toggleCart()">
+            carrinho <span class="cart-pill-count" id="cartCount">0</span>
+        </button>
+    </header>
+
+    <div class="container">
+
+        <!-- TÍTULO DA LOJA -->
+        <div class="hero-section">
+            <h1 class="main-title">
+                estoque<br>
+                <span class="main-title-pink">flee the facility.</span>
+            </h1>
+            <p class="hero-subtitle">itens disponíveis no estoque atual.</p>
+            <a href="#catalogo" class="btn-ver-estoque">ver estoque</a>
+        </div>
+
+        <!-- BANNER DOKI DOKI LITERATURE CLUB -->
+        <div class="banner-container">
+            <img src="https://images3.alphacoders.com/885/885182.png" alt="Doki Doki Literature Club Banner">
+        </div>
+
+        <!-- BARRA INFORMATIVA -->
+        <div class="info-bar">
+            <div class="info-item">LITERATURE CLUB</div>
+            <div class="info-item">FLEE THE FACILITY</div>
+            <div class="info-item">COMPRA SEGURA</div>
+            <div class="info-item">SUPORTE DISCORD</div>
+        </div>
+
+        <!-- SEÇÃO DE CATÁLOGO -->
+        <div id="catalogo">
+            <div class="section-tag">LITERATURE CLUB</div>
+            <h2 class="section-title">loja de ftf com preços super baratos</h2>
+
+            <!-- GRID DE PRODUTOS -->
+            <div class="products-grid">
+
+                <div class="card">
+                    <div class="card-img-container">
+                        <img src="https://via.placeholder.com/150/ffffff/ea74a2?text=Strawberry+Moo" alt="Strawberry Moo">
+                    </div>
+                    <h3 class="card-title">Strawberry Moo Plushie</h3>
+                    <div class="card-price">R$ 200,00</div>
+                    <button class="btn-add" onclick="addToCart('Strawberry Moo Plushie', 200.00)">
+                        <i class="fa-solid fa-plus"></i> Adicionar
+                    </button>
+                </div>
+
+                <div class="card">
+                    <div class="card-img-container">
+                        <img src="https://via.placeholder.com/150/ffffff/ea74a2?text=Frosted" alt="Frosted">
+                    </div>
+                    <h3 class="card-title">Frosted Set</h3>
+                    <div class="card-price">R$ 19,99</div>
+                    <button class="btn-add" onclick="addToCart('Frosted Set', 19.99)">
+                        <i class="fa-solid fa-plus"></i> Adicionar
+                    </button>
+                </div>
+
+                <div class="card">
+                    <div class="card-img-container">
+                        <img src="https://via.placeholder.com/150/ffffff/ea74a2?text=Popcorn+Stand" alt="Popcorn Stand">
+                    </div>
+                    <h3 class="card-title">Popcorn Stand</h3>
+                    <div class="card-price">R$ 8,00</div>
+                    <button class="btn-add" onclick="addToCart('Popcorn Stand', 8.00)">
+                        <i class="fa-solid fa-plus"></i> Adicionar
+                    </button>
+                </div>
+
+                <div class="card">
+                    <div class="card-img-container">
+                        <img src="https://via.placeholder.com/150/ffffff/ea74a2?text=Lovesick+Bow" alt="Lovesick Bow">
+                    </div>
+                    <h3 class="card-title">Lovesick Bow</h3>
+                    <div class="card-price">R$ 7,50</div>
+                    <button class="btn-add" onclick="addToCart('Lovesick Bow', 7.50)">
+                        <i class="fa-solid fa-plus"></i> Adicionar
+                    </button>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <!-- MODAL DO CARRINHO -->
+    <div class="modal-overlay" id="cartModal">
+        <div class="cart-modal">
+            <div class="cart-header">
+                <h2>Seu Carrinho</h2>
+                <button class="close-btn" onclick="toggleCart()"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="cart-items" id="cartItemsContainer"></div>
+            <div class="cart-footer">
+                <div class="cart-total">
+                    <span>Total:</span>
+                    <span id="cartTotalValue">R$ 0,00</span>
+                </div>
+                <button class="btn-checkout" onclick="checkoutDiscord()">
+                    <i class="fa-brands fa-discord"></i> Finalizar no Discord
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCRIPT DE FUNCIONAMENTO -->
+    <script>
+        let cart = [];
+
+        function addToCart(name, price) {
+            const existingItem = cart.find(item => item.name === name);
+            if (existingItem) {
+                existingItem.qty += 1;
+            } else {
+                cart.push({ name, price, qty: 1 });
+            }
+            updateCartUI();
+        }
+
+        function changeQty(name, delta) {
+            const item = cart.find(item => item.name === name);
+            if (item) {
+                item.qty += delta;
+                if (item.qty <= 0) {
+                    cart = cart.filter(i => i.name !== name);
+                }
+            }
+            updateCartUI();
+        }
+
+        function toggleCart() {
+            document.getElementById('cartModal').classList.toggle('active');
+        }
+
+        function updateCartUI() {
+            const cartItemsContainer = document.getElementById('cartItemsContainer');
+            const cartCount = document.getElementById('cartCount');
+            const cartTotalValue = document.getElementById('cartTotalValue');
+
+            let totalQty = 0;
+            let totalPrice = 0;
+
+            cartItemsContainer.innerHTML = '';
+
+            if (cart.length === 0) {
+                cartItemsContainer.innerHTML = '<div class="empty-cart-msg">Seu carrinho está vazio.</div>';
+            } else {
+                cart.forEach(item => {
+                    totalQty += item.qty;
+                    totalPrice += item.price * item.qty;
+
+                    const itemElement = document.createElement('div');
+                    itemElement.className = 'cart-item';
+                    itemElement.innerHTML = `
+                        <div>
+                            <div class="cart-item-name">${item.name}</div>
+                            <div class="cart-item-price">R$ ${(item.price * item.qty).toFixed(2).replace('.', ',')}</div>
+                        </div>
+                        <div class="cart-item-controls">
+                            <button class="qty-btn" onclick="changeQty('${item.name}', -1)">-</button>
+                            <span>${item.qty}</span>
+                            <button class="qty-btn" onclick="changeQty('${item.name}', 1)">+</button>
+                        </div>
+                    `;
+                    cartItemsContainer.appendChild(itemElement);
+                });
+            }
+
+            cartCount.textContent = totalQty;
+            cartTotalValue.textContent = `R$ ${totalPrice.toFixed(2).replace('.', ',')}`;
+        }
+
+        function checkoutDiscord() {
+            if (cart.length === 0) return;
+
+            let message = "🛒 *NOVO PEDIDO - LITERATURE CLUB*\n\n";
+            let totalPrice = 0;
+
+            cart.forEach(item => {
+                const subtotal = item.price * item.qty;
+                totalPrice += subtotal;
+                message += `• ${item.qty}x ${item.name} (R$ ${subtotal.toFixed(2).replace('.', ',')})\n`;
+            });
+
+            message += `\n💰 *Total:* R$ ${totalPrice.toFixed(2).replace('.', ',')}`;
+            message += "\n\nOlá! Vim do site e gostaria de finalizar este pedido.";
+
+            navigator.clipboard.writeText(message).then(() => {
+                alert("Pedido copiado com sucesso! Abra o ticket no Discord e cole a mensagem.");
+                window.open("https://discord.gg/xjzaQD9hhS", "_blank");
+            }).catch(() => {
+                window.open("https://discord.gg/xjzaQD9hhS", "_blank");
+            });
+        }
+    </script>
+</body>
+</html>
         .search-header {
             display: flex;
             align-items: center;
