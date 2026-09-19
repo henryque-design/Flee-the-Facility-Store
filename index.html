@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Frosted FTF | Loja de Itens</title>
+    <title>Literature Club | Loja de Itens</title>
     <!-- Ícones Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -75,12 +75,79 @@
             justify-content: center;
             font-size: 1rem;
             text-decoration: none;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background-color: #ff3366;
+            color: white;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            font-size: 0.7rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .container {
             max-width: 800px;
             margin: 0 auto;
             padding: 1.2rem 0.8rem;
+        }
+
+        /* SECÇÃO DE PESQUISA */
+        .search-section {
+            margin-bottom: 1.5rem;
+        }
+
+        .search-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .search-subtitle {
+            font-size: 0.85rem;
+            color: #8f96a3;
+            margin-bottom: 1.2rem;
+        }
+
+        .search-input-wrapper {
+            position: relative;
+            margin-bottom: 10px;
+        }
+
+        .search-input-wrapper i {
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #6c757d;
+            font-size: 1rem;
+        }
+
+        .search-input {
+            width: 100%;
+            background-color: #151821;
+            border: 1px solid #232736;
+            border-radius: 25px;
+            padding: 12px 16px 12px 42px;
+            color: #ffffff;
+            font-size: 0.9rem;
+            outline: none;
+        }
+
+        .search-input::placeholder {
+            color: #6c757d;
         }
 
         /* GRID DE PRODUTOS (2 COLUNAS) */
@@ -131,10 +198,10 @@
         }
 
         .card-price {
-            font-size: 0.75rem;
+            font-size: 0.8rem;
             color: #8f96a3;
             margin-bottom: 0.8rem;
-            font-weight: 500;
+            font-weight: 600;
         }
 
         .btn-add {
@@ -148,7 +215,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            text-decoration: none;
+            cursor: pointer;
             transition: background 0.2s, transform 0.1s;
             box-shadow: 0 4px 12px rgba(0, 153, 255, 0.3);
         }
@@ -158,7 +225,154 @@
             background-color: #0088e0;
         }
 
-        /* BOTÃO FLUTUANTE PARA O TOPO */
+        /* MODAL DO CARRINHO */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.75);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            padding: 1rem;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .cart-modal {
+            background-color: #151821;
+            border: 1px solid #2a2f42;
+            border-radius: 20px;
+            width: 100%;
+            max-width: 480px;
+            max-height: 85vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .cart-header {
+            padding: 1.2rem;
+            background-color: #12141d;
+            border-bottom: 1px solid #1f2230;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .cart-header h2 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            color: #8f96a3;
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+
+        .cart-items {
+            padding: 1rem;
+            overflow-y: auto;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .cart-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #1b1e2b;
+            padding: 10px 12px;
+            border-radius: 12px;
+            border: 1px solid #252a3d;
+        }
+
+        .cart-item-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .cart-item-name {
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .cart-item-price {
+            font-size: 0.8rem;
+            color: #38b6ff;
+        }
+
+        .cart-item-controls {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .qty-btn {
+            background-color: #2a2f42;
+            border: none;
+            color: white;
+            width: 26px;
+            height: 26px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .cart-footer {
+            padding: 1.2rem;
+            background-color: #12141d;
+            border-top: 1px solid #1f2230;
+        }
+
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .btn-checkout {
+            width: 100%;
+            background-color: #5865F2; /* Cor do Discord */
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 12px;
+            font-weight: bold;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .empty-cart-msg {
+            text-align: center;
+            color: #8f96a3;
+            padding: 2rem 0;
+            font-size: 0.9rem;
+        }
+
+        /* BOTÃO FLUTUANTE PARA SUBIR */
         .scroll-top-btn {
             position: fixed;
             bottom: 20px;
@@ -184,22 +398,38 @@
     <header>
         <div class="logo-area">
             <div class="snowflake-icon">
-                <i class="fa-regular fa-snowflake"></i>
+                <i class="fa-solid fa-book-open"></i>
             </div>
-            <span class="site-title">Frosted FTF</span>
+            <span class="site-title">Literature Club</span>
         </div>
         <div class="header-actions">
-            <a href="https://discord.gg/xjzaQD9hhS" class="icon-btn" target="_blank" title="Entrar no Discord">
+            <button class="icon-btn" onclick="toggleCart()" title="Carrinho">
+                <i class="fa-solid fa-cart-shopping"></i>
+                <span class="cart-count" id="cartCount">0</span>
+            </button>
+            <a href="https://discord.gg/xjzaQD9hhS" class="icon-btn" target="_blank" title="Discord">
                 <i class="fa-brands fa-discord"></i>
-            </a>
-            <a href="https://discord.gg/xjzaQD9hhS" class="icon-btn" target="_blank" title="Abrir Menu">
-                <i class="fa-solid fa-bars"></i>
             </a>
         </div>
     </header>
 
     <div class="container">
-        <div class="products-grid">
+
+        <!-- ÁREA DE PESQUISA -->
+        <div class="search-section">
+            <div class="search-header">
+                <i class="fa-solid fa-boxes-stacked"></i> Catálogo de Itens
+            </div>
+            <p class="search-subtitle">Pesquise os itens desejados e adicione-os ao carrinho.</p>
+
+            <div class="search-input-wrapper">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" id="searchInput" class="search-input" placeholder="Buscar item pelo nome..." onkeyup="filterItems()">
+            </div>
+        </div>
+
+        <!-- GRID DE PRODUTOS -->
+        <div class="products-grid" id="productsGrid">
 
             <!-- ITEM 1 -->
             <div class="card">
@@ -208,9 +438,9 @@
                 </div>
                 <h3 class="card-title">Strawberry Moo Plushie</h3>
                 <div class="card-price">R$ 200,00</div>
-                <a href="https://discord.gg/xjzaQD9hhS" target="_blank" class="btn-add">
+                <button class="btn-add" onclick="addToCart('Strawberry Moo Plushie', 200.00)">
                     <i class="fa-solid fa-cart-plus"></i>
-                </a>
+                </button>
             </div>
 
             <!-- ITEM 2 -->
@@ -220,9 +450,9 @@
                 </div>
                 <h3 class="card-title">Frosted</h3>
                 <div class="card-price">R$ 19,99</div>
-                <a href="https://discord.gg/xjzaQD9hhS" target="_blank" class="btn-add">
+                <button class="btn-add" onclick="addToCart('Frosted', 19.99)">
                     <i class="fa-solid fa-cart-plus"></i>
-                </a>
+                </button>
             </div>
 
             <!-- ITEM 3 -->
@@ -232,9 +462,9 @@
                 </div>
                 <h3 class="card-title">Party Balloons</h3>
                 <div class="card-price">R$ 12,50</div>
-                <a href="https://discord.gg/xjzaQD9hhS" target="_blank" class="btn-add">
+                <button class="btn-add" onclick="addToCart('Party Balloons', 12.50)">
                     <i class="fa-solid fa-cart-plus"></i>
-                </a>
+                </button>
             </div>
 
             <!-- ITEM 4 -->
@@ -244,9 +474,9 @@
                 </div>
                 <h3 class="card-title">Carousel</h3>
                 <div class="card-price">R$ 8,00</div>
-                <a href="https://discord.gg/xjzaQD9hhS" target="_blank" class="btn-add">
+                <button class="btn-add" onclick="addToCart('Carousel', 8.00)">
                     <i class="fa-solid fa-cart-plus"></i>
-                </a>
+                </button>
             </div>
 
             <!-- ITEM 5 -->
@@ -256,9 +486,9 @@
                 </div>
                 <h3 class="card-title">Popcorn Stand</h3>
                 <div class="card-price">R$ 8,00</div>
-                <a href="https://discord.gg/xjzaQD9hhS" target="_blank" class="btn-add">
+                <button class="btn-add" onclick="addToCart('Popcorn Stand', 8.00)">
                     <i class="fa-solid fa-cart-plus"></i>
-                </a>
+                </button>
             </div>
 
             <!-- ITEM 6 -->
@@ -268,11 +498,33 @@
                 </div>
                 <h3 class="card-title">Lovesick Bow</h3>
                 <div class="card-price">R$ 7,50</div>
-                <a href="https://discord.gg/xjzaQD9hhS" target="_blank" class="btn-add">
+                <button class="btn-add" onclick="addToCart('Lovesick Bow', 7.50)">
                     <i class="fa-solid fa-cart-plus"></i>
-                </a>
+                </button>
             </div>
 
+        </div>
+    </div>
+
+    <!-- MODAL DO CARRINHO -->
+    <div class="modal-overlay" id="cartModal">
+        <div class="cart-modal">
+            <div class="cart-header">
+                <h2><i class="fa-solid fa-cart-shopping"></i> Seu Carrinho</h2>
+                <button class="close-btn" onclick="toggleCart()"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="cart-items" id="cartItemsContainer">
+                <!-- Itens do carrinho aparecem aqui -->
+            </div>
+            <div class="cart-footer">
+                <div class="cart-total">
+                    <span>Total:</span>
+                    <span id="cartTotalValue">R$ 0,00</span>
+                </div>
+                <a href="https://discord.gg/xjzaQD9hhS" target="_blank" class="btn-checkout">
+                    <i class="fa-brands fa-discord"></i> Finalizar Pedido no Discord
+                </a>
+            </div>
         </div>
     </div>
 
@@ -281,5 +533,87 @@
         <i class="fa-solid fa-arrow-up"></i>
     </a>
 
+    <!-- SCRIPT DE FILTRO E CARRINHO -->
+    <script>
+        let cart = [];
+
+        function filterItems() {
+            const input = document.getElementById('searchInput').value.toLowerCase();
+            const cards = document.querySelectorAll('.card');
+
+            cards.forEach(card => {
+                const title = card.querySelector('.card-title').textContent.toLowerCase();
+                if (title.includes(input)) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        function addToCart(name, price) {
+            const existingItem = cart.find(item => item.name === name);
+            if (existingItem) {
+                existingItem.qty += 1;
+            } else {
+                cart.push({ name, price, qty: 1 });
+            }
+            updateCartUI();
+        }
+
+        function changeQty(name, delta) {
+            const item = cart.find(item => item.name === name);
+            if (item) {
+                item.qty += delta;
+                if (item.qty <= 0) {
+                    cart = cart.filter(i => i.name !== name);
+                }
+            }
+            updateCartUI();
+        }
+
+        function toggleCart() {
+            const modal = document.getElementById('cartModal');
+            modal.classList.toggle('active');
+        }
+
+        function updateCartUI() {
+            const cartItemsContainer = document.getElementById('cartItemsContainer');
+            const cartCount = document.getElementById('cartCount');
+            const cartTotalValue = document.getElementById('cartTotalValue');
+
+            let totalQty = 0;
+            let totalPrice = 0;
+
+            cartItemsContainer.innerHTML = '';
+
+            if (cart.length === 0) {
+                cartItemsContainer.innerHTML = '<div class="empty-cart-msg">Seu carrinho está vazio.</div>';
+            } else {
+                cart.forEach(item => {
+                    totalQty += item.qty;
+                    totalPrice += item.price * item.qty;
+
+                    const itemElement = document.createElement('div');
+                    itemElement.className = 'cart-item';
+                    itemElement.innerHTML = `
+                        <div class="cart-item-info">
+                            <span class="cart-item-name">${item.name}</span>
+                            <span class="cart-item-price">R$ ${(item.price * item.qty).toFixed(2).replace('.', ',')}</span>
+                        </div>
+                        <div class="cart-item-controls">
+                            <button class="qty-btn" onclick="changeQty('${item.name}', -1)">-</button>
+                            <span>${item.qty}</span>
+                            <button class="qty-btn" onclick="changeQty('${item.name}', 1)">+</button>
+                        </div>
+                    `;
+                    cartItemsContainer.appendChild(itemElement);
+                });
+            }
+
+            cartCount.textContent = totalQty;
+            cartTotalValue.textContent = `R$ ${totalPrice.toFixed(2).replace('.', ',')}`;
+        }
+    </script>
 </body>
 </html>
