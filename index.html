@@ -3,223 +3,283 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Loja Flee the Facility | Itens & Sets Exclusivos</title>
+    <title>Frosted FTF | Loja de Itens</title>
+    <!-- Ícones Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* CSS / ESTILOS DO SITE */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
         }
 
         body {
-            background-color: #0f111a;
+            background-color: #0b0c10;
             color: #ffffff;
-            padding-bottom: 50px;
+            padding-bottom: 30px;
         }
 
         /* CABEÇALHO */
         header {
-            background: linear-gradient(135deg, #1f2333 0%, #0d0f17 100%);
-            padding: 2rem 1rem;
-            text-align: center;
-            border-bottom: 3px solid #00d2ff;
-            box-shadow: 0 4px 20px rgba(0, 210, 255, 0.2);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 1.2rem;
+            background-color: #12141d;
+            border-bottom: 1px solid #1f2230;
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
 
-        header h1 {
-            font-size: 2.5rem;
-            color: #00d2ff;
-            text-shadow: 0 0 10px rgba(0, 210, 255, 0.5);
-            margin-bottom: 0.5rem;
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 12px;
         }
 
-        header p {
-            color: #a0a5b5;
-            font-size: 1.1rem;
+        .snowflake-icon {
+            background-color: #38b6ff;
+            color: #ffffff;
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            box-shadow: 0 0 10px rgba(56, 182, 255, 0.4);
+        }
+
+        .site-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: #ffffff;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .icon-btn {
+            background-color: #1e2230;
+            border: 1px solid #2a2f42;
+            color: #38b6ff;
+            width: 38px;
+            height: 38px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            text-decoration: none;
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 800px;
             margin: 0 auto;
-            padding: 2rem 1rem;
+            padding: 1.2rem 0.8rem;
         }
 
-        /* COMO FUNCIONA (AVISO) */
-        .info-box {
-            background-color: #181b29;
-            border-left: 4px solid #00d2ff;
-            padding: 1.5rem;
-            border-radius: 8px;
-            margin-bottom: 2rem;
-        }
-
-        .info-box h3 {
-            color: #00d2ff;
-            margin-bottom: 0.5rem;
-        }
-
-        .info-box ol {
-            margin-left: 1.2rem;
-            color: #cccccc;
-            line-height: 1.6;
-        }
-
-        /* GRID DE PRODUTOS */
+        /* GRID DE PRODUTOS (2 COLUNAS) */
         .products-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 1.5rem;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
         }
 
         /* CARD DO PRODUTO */
         .card {
-            background-color: #181b29;
-            border: 1px solid #2a2e45;
-            border-radius: 12px;
-            overflow: hidden;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            background-color: #151821;
+            border: 1px solid #1f2330;
+            border-radius: 16px;
+            padding: 1rem 0.8rem;
             display: flex;
             flex-direction: column;
+            align-items: center;
+            text-align: center;
         }
 
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0, 210, 255, 0.2);
-            border-color: #00d2ff;
+        .card-img-container {
+            width: 100%;
+            height: 110px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 0.8rem;
         }
 
         .card img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            background-color: #0d0f17;
+            max-width: 100%;
+            max-height: 100px;
+            object-fit: contain;
+            margin: 0 auto;
         }
-
-        .card-body {
-            padding: 1.2rem;
-            display: flex;
-            flex-direction: column;
-            flex-grow: 1;
-        }
-
-        .badge {
-            align-self: flex-start;
-            background-color: #9b51e0;
-            color: white;
-            font-size: 0.75rem;
-            font-weight: bold;
-            padding: 4px 8px;
-            border-radius: 4px;
-            margin-bottom: 0.5rem;
-            text-transform: uppercase;
-        }
-
-        .badge.legendary { background-color: #ff9900; }
-        .badge.epic { background-color: #9b51e0; }
-        .badge.rare { background-color: #00d2ff; color: #000; }
 
         .card-title {
-            font-size: 1.3rem;
-            margin-bottom: 0.5rem;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 0.6rem;
+            min-height: 2.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            line-height: 1.2;
         }
 
         .card-price {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #27ae60;
-            margin-bottom: 1rem;
+            font-size: 0.75rem;
+            color: #8f96a3;
+            margin-bottom: 0.8rem;
+            font-weight: 500;
         }
 
-        .btn-buy {
-            margin-top: auto;
-            background-color: #25d366;
+        .btn-add {
+            width: 100%;
+            background-color: #0099ff;
             color: #ffffff;
-            text-decoration: none;
-            text-align: center;
-            padding: 0.8rem;
-            border-radius: 6px;
-            font-weight: bold;
-            font-size: 1rem;
-            display: block;
-            transition: background 0.3s;
-        }
-
-        .btn-buy:hover {
-            background-color: #1eb857;
-        }
-
-        /* RODAPÉ */
-        footer {
-            text-align: center;
-            margin-top: 3rem;
-            color: #666;
+            border: none;
+            padding: 10px 0;
+            border-radius: 10px;
             font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: background 0.2s, transform 0.1s;
+            box-shadow: 0 4px 12px rgba(0, 153, 255, 0.3);
+        }
+
+        .btn-add:active {
+            transform: scale(0.97);
+            background-color: #0088e0;
+        }
+
+        /* BOTÃO FLUTUANTE PARA O TOPO */
+        .scroll-top-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #38b6ff;
+            color: #ffffff;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(56, 182, 255, 0.4);
+            font-size: 1.2rem;
+            z-index: 99;
         }
     </style>
 </head>
 <body>
 
+    <!-- CABEÇALHO -->
     <header>
-        <h1>FTF STORE</h1>
-        <p>Os melhores Marretas, Gemas e Sets do Flee the Facility com entrega rápida!</p>
+        <div class="logo-area">
+            <div class="snowflake-icon">
+                <i class="fa-regular fa-snowflake"></i>
+            </div>
+            <span class="site-title">Frosted FTF</span>
+        </div>
+        <div class="header-actions">
+            <a href="https://discord.gg/xjzaQD9hhS" class="icon-btn" target="_blank" title="Entrar no Discord">
+                <i class="fa-brands fa-discord"></i>
+            </a>
+            <a href="https://discord.gg/xjzaQD9hhS" class="icon-btn" target="_blank" title="Abrir Menu">
+                <i class="fa-solid fa-bars"></i>
+            </a>
+        </div>
     </header>
 
     <div class="container">
-        <!-- ÁREA DE INSTRUÇÕES PARA O COMPRADOR -->
-        <div class="info-box">
-            <h3> Como Funciona a Compra?</h3>
-            <ol>
-                <li>Escolha o item desejado e clique em <strong>"Comprar via WhatsApp"</strong>.</li>
-                <li>Você será redirecionado para conversar direto conosco.</li>
-                <li>Após o pagamento (Pix), entramos no servidor do Roblox para realizar a troca (trade) do seu item!</li>
-            </ol>
-        </div>
-
-        <!-- LISTA DE PRODUTOS -->
         <div class="products-grid">
 
-            <!-- PRODUTO 1 -->
+            <!-- ITEM 1 -->
             <div class="card">
-                <img src="https://via.placeholder.com/300x200/111/fff?text=Set+VIP" alt="Item FTF">
-                <div class="card-body">
-                    <span class="badge legendary">Lendário</span>
-                    <h2 class="card-title">Set VIP Completo</h2>
-                    <div class="card-price">R$ 25,00</div>
-                    <!-- Substitua o numero 5531999999999 pelo seu número real -->
-                    <a href="https://wa.me/5531999999999?text=Olá!%20Tenho%20interesse%20em%20comprar%20o%20Set%20VIP%20Completo" target="_blank" class="btn-buy">Comprar via WhatsApp</a>
+                <div class="card-img-container">
+                    <img src="https://via.placeholder.com/150/151821/ff69b4?text=Strawberry+Moo" alt="Strawberry Moo Plushie">
                 </div>
+                <h3 class="card-title">Strawberry Moo Plushie</h3>
+                <div class="card-price">R$ 200,00</div>
+                <a href="https://discord.gg/xjzaQD9hhS" target="_blank" class="btn-add">
+                    <i class="fa-solid fa-cart-plus"></i>
+                </a>
             </div>
 
-            <!-- PRODUTO 2 -->
+            <!-- ITEM 2 -->
             <div class="card">
-                <img src="https://via.placeholder.com/300x200/111/fff?text=Marreta+Rara" alt="Item FTF">
-                <div class="card-body">
-                    <span class="badge epic">Épico</span>
-                    <h2 class="card-title">Marreta Neon</h2>
-                    <div class="card-price">R$ 15,00</div>
-                    <a href="https://wa.me/5531999999999?text=Olá!%20Tenho%20interesse%20em%20comprar%20a%20Marreta%20Neon" target="_blank" class="btn-buy">Comprar via WhatsApp</a>
+                <div class="card-img-container">
+                    <img src="https://via.placeholder.com/150/151821/00d2ff?text=Frosted" alt="Frosted">
                 </div>
+                <h3 class="card-title">Frosted</h3>
+                <div class="card-price">R$ 19,99</div>
+                <a href="https://discord.gg/xjzaQD9hhS" target="_blank" class="btn-add">
+                    <i class="fa-solid fa-cart-plus"></i>
+                </a>
             </div>
 
-            <!-- PRODUTO 3 -->
+            <!-- ITEM 3 -->
             <div class="card">
-                <img src="https://via.placeholder.com/300x200/111/fff?text=Gema+Rara" alt="Item FTF">
-                <div class="card-body">
-                    <span class="badge rare">Raro</span>
-                    <h2 class="card-title">Gema Azul Brillante</h2>
-                    <div class="card-price">R$ 10,00</div>
-                    <a href="https://wa.me/5531999999999?text=Olá!%20Tenho%20interesse%20em%20comprar%20a%20Gema%20Azul" target="_blank" class="btn-buy">Comprar via WhatsApp</a>
+                <div class="card-img-container">
+                    <img src="https://via.placeholder.com/150/151821/ffcc00?text=Party+Balloons" alt="Party Balloons">
                 </div>
+                <h3 class="card-title">Party Balloons</h3>
+                <div class="card-price">R$ 12,50</div>
+                <a href="https://discord.gg/xjzaQD9hhS" target="_blank" class="btn-add">
+                    <i class="fa-solid fa-cart-plus"></i>
+                </a>
+            </div>
+
+            <!-- ITEM 4 -->
+            <div class="card">
+                <div class="card-img-container">
+                    <img src="https://via.placeholder.com/150/151821/ff99cc?text=Carousel" alt="Carousel">
+                </div>
+                <h3 class="card-title">Carousel</h3>
+                <div class="card-price">R$ 8,00</div>
+                <a href="https://discord.gg/xjzaQD9hhS" target="_blank" class="btn-add">
+                    <i class="fa-solid fa-cart-plus"></i>
+                </a>
+            </div>
+
+            <!-- ITEM 5 -->
+            <div class="card">
+                <div class="card-img-container">
+                    <img src="https://via.placeholder.com/150/151821/ffaa00?text=Popcorn+Stand" alt="Popcorn Stand">
+                </div>
+                <h3 class="card-title">Popcorn Stand</h3>
+                <div class="card-price">R$ 8,00</div>
+                <a href="https://discord.gg/xjzaQD9hhS" target="_blank" class="btn-add">
+                    <i class="fa-solid fa-cart-plus"></i>
+                </a>
+            </div>
+
+            <!-- ITEM 6 -->
+            <div class="card">
+                <div class="card-img-container">
+                    <img src="https://via.placeholder.com/150/151821/ff3399?text=Lovesick+Bow" alt="Lovesick Bow">
+                </div>
+                <h3 class="card-title">Lovesick Bow</h3>
+                <div class="card-price">R$ 7,50</div>
+                <a href="https://discord.gg/xjzaQD9hhS" target="_blank" class="btn-add">
+                    <i class="fa-solid fa-cart-plus"></i>
+                </a>
             </div>
 
         </div>
     </div>
 
-    <footer>
-        <p>FTF Store — Não possuímos vínculo direto com a Roblox Corporation.</p>
-    </footer>
+    <!-- BOTÃO FLUTUANTE PARA SUBIR -->
+    <a href="#" class="scroll-top-btn">
+        <i class="fa-solid fa-arrow-up"></i>
+    </a>
 
 </body>
 </html>
